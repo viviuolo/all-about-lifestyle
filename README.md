@@ -2,7 +2,7 @@
 
 为生活小白们提供的微信小程序，小白们每次去菜场、水果店都很发愁，想做一个大家共同维护的平台，来给生活小白们一些建议，比如怎么挑水果？什么样的橙子最好吃？
 
-![预览](https://github.com/viviuolo/all-about-lifestyle/miniprogram/image/preview/preview1.PNG)
+![预览](https://github.com/viviuolo/all-about-lifestyle/tree/master/miniprogram/image/preview/preview1.PNG)
 
 # 云开发 quickstart
 
