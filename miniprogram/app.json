@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/information/information",
+    "pages/advice/advice",
+    "pages/feedback/feedback"
+  ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/information/information",
+        "text": "水果名片",
+        "iconPath": "image/list.png",
+        "selectedIconPath": "image/list-active.png"
+      },
+      {
+        "pagePath": "pages/advice/advice",
+        "text": "我的建议",
+        "iconPath": "image/dialog.png",
+        "selectedIconPath": "image/dialog-active.png"
+      },
+      {
+        "pagePath": "pages/feedback/feedback",
+        "text": "反馈",
+        "iconPath": "image/skill.png",
+        "selectedIconPath": "image/skill-active.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "水果名片",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

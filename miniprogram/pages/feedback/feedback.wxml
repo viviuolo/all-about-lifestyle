@@ -1,0 +1,21 @@
+<view class="page">
+  <view wx:if="{{showing}}">
+    <view class="weui-cells__title">{{ advice.name }}</view>
+    <view class="collapsible-tab-item">
+      <view class="collapsible-tab-item-hd collapsible-tab-item-hd-show">
+        <view class="collapsible-tab-text">{{ advice.user }}</view>
+      </view>
+      <view class="collapsible-tab-item-bd collapsible-tab-item-bd-show">
+        <view class="collapsible-tab-text">{{ advice.tip }}</view>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="addIntoTips">同意</button>
+      <button class="weui-btn" type="default" bindtap="reload">不同意</button>
+      <button class="weui-btn" type="default" bindtap="skip">跳过</button>
+    </view>
+  </view>
+  <view wx:else>
+    <view class="weui-cells__title">没有小可爱给出建议</view>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+/* pages/information/information.wxss */
+.img {
+  margin: 10%;
+  width: 100px;
+  height: 100px;
+}
+.subtitle {
+  margin: 2%;
+  color: #9B9B9B;
+}
+.link {
+  color: #06ad56;
+}

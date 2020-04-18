@@ -1,0 +1,56 @@
+/**app.wxss**/
+@import 'weui/weui-wxss/dist/style/weui.wxss';
+page {
+  background-color: #F8F8F8;
+  min-height: 100%;
+  width: 94%;
+  padding: 0 3%;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// folk 
+.collapsible-tab {
+  background-color: #FFFFFF;
+}
+.collapsible-tab-item {
+  margin: 20rpx 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+.collapsible-tab-item:first-child {
+  margin-top: 0;
+}
+.collapsible-tab-text{
+  flex: 1;
+}
+.collapsible-tab-subtext{
+  color: #9B9B9B;
+}
+.collapsible-tab-img {
+  width: 60rpx;
+  height: 60rpx;
+}
+.collapsible-tab-item-hd {
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+
+  transition: opacity .3s;
+}
+.collapsible-tab-item-hd-show {
+  opacity: .2;
+}
+.collapsible-tab-item-bd {
+  height: 0;
+  overflow: hidden;
+}
+.collapsible-tab-item-bd-show {
+  padding: 30rpx;
+  height: auto;
+}

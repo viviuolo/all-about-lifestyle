@@ -1,0 +1,41 @@
+<view class="page">
+   <view class="title">
+    <image class="img" aspectFit src="image/create.png"></image>
+  </view>
+  <view>
+    <!-- <view class="weui-cells__title">搜索栏</view> -->
+    <view>
+      <mp-searchbar
+        bindselectresult="selectResult"
+        bindclear="clear"
+        value="{{search}}"
+        bindinput="setSearchStr"
+        cancel="{{false}}"
+        placeholder="{{searchPlaceholder}}"
+      >
+      </mp-searchbar>
+      <!-- <button type="default" plain="{{true}}" bindtap="onSearch" style="width:98%; margin-top: 2%; color:rgba(0,0,0,.5)">查询</button> -->
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="onSearch">问我呀</button>
+      </view>
+    </view>
+    <view wx:if="{{isQuerySuccess && queryResult.length > 0}}">
+      <view class="weui-cells__title">小建议</view>
+      <view class="collapsible-tab">
+        <block wx:for="{{queryResult}}" wx:for-item="result" wx:key="{{result._id}}">
+          <view class="collapsible-tab-item">
+            <view id="{{result._id}}" class="collapsible-tab-item-hd {{result.open ? 'collapsible-tab-item-hd-show' : ''}}" bindtap="kindToggle">
+              <view class="collapsible-tab-text">{{ result.user }}</view>
+            </view>
+            <view class="collapsible-tab-item-bd {{result.open ? 'collapsible-tab-item-bd-show' : ''}}">
+              <view class="collapsible-tab-text">{{ result.tip }}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view wx:if="{{isQuerySuccess && queryResult.length === 0}}">
+      <view class="weui-cells__title">没有小可爱给出建议, <a bindtap="redirectToAdvice" class="link">那就我来吧</a></view>
+    </view>
+  </view>
+</view>
