@@ -29,13 +29,53 @@ Page({
   onSearch: function () {
     const searchStr = this.data.search.trim()
     if (searchStr === '') {
-      wx.showToast({
-        icon: 'none',
-        title: '不能为空'
-      })
-      return
+      this.onSearchGoodsRandom()
+    } else {
+      this.onSearchGoods()
     }
+  },
+
+  onSearchGoodsRandom: function () {
+    wx.cloud.callFunction({
+      name: 'dbconn',
+      data: {
+        dbName: 'goods',
+        method: 'count'
+      }
+    }).then((res) => {
+      console.log(res.result)
+      if (res.result && res.result.total && res.result.total !== 0) {
+        const total = res.result.total
+        const random = Math.floor(Math.random() * total)
+        this.getRandomGoods(random)
+      }
+    })
+  },
+
+  getRandomGoods: function (random) {
+    wx.showLoading({
+      title: '加载中',
+    })
     const db = wx.cloud.database()
+    db.collection('goods').limit(1).skip(random)
+    .get({
+      success: res => {
+        this.buildQueryResult(res.data)
+        wx.hideLoading()
+      },
+      fail: err => {
+        wx.hideLoading()
+        // TODO
+      }
+    })
+  },
+
+  onSearchGoods: function () {
+    const searchStr = this.data.search.trim()
+    const db = wx.cloud.database()
+    wx.showLoading({
+      title: '加载中',
+    })
     db.collection('goods').where({
       name: db.RegExp({
         regexp: searchStr,
@@ -44,8 +84,10 @@ Page({
     }).get({
       success: res => {
         this.buildQueryResult(res.data)
+        wx.hideLoading()
       },
       fail: err => {
+        wx.hideLoading()
         wx.showToast({
           icon: 'none',
           title: '查询记录失败'

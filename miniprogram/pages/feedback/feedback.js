@@ -26,11 +26,13 @@ Page({
   },
 
   getAdvice: function () {
+    wx.showLoading()
     const db = wx.cloud.database()
     db.collection('advices')
     .limit(1) // 限制返回数量为 1 条
     .get({
       success: res => {
+        wx.hideLoading()
         if (res.data.length === 0) {
           this.setData({ showing: false})
         } else {
@@ -40,6 +42,7 @@ Page({
         }
       },
       fail: err => {
+        wx.hideLoading()
         wx.showToast({
           icon: 'none',
           title: '查询记录失败'
@@ -54,10 +57,11 @@ Page({
     }
 
     wx.cloud.callFunction({
-      name: 'db',
+      name: 'dbconn',
       data: {
         id,
-        db: 'advices'
+        dbName: 'advices',
+        method: 'delete'
       }
     })
   },
@@ -67,15 +71,17 @@ Page({
       return
     }
 
-    const db = wx.cloud.database()
-    db.collection('advices').add({
-      // data 字段表示需新增的 JSON 数据
+    wx.cloud.callFunction({
+      name: 'dbconn',
       data: {
-        name: this.data.advice.name,
-        tip: this.data.advice.tip
+        dbName: 'advices',
+        method: 'add',
+        data: {
+          name: this.data.advice.name,
+          tip: this.data.advice.tip
+        }
       }
-    })
-    .then(() => {
+    }).then(() => {
       // TODO
     })
   },
@@ -84,15 +90,20 @@ Page({
     if (JSON.stringify(this.data.advice) === '{}') {
       return
     }
-    const db = wx.cloud.database()
-    db.collection('feedbacks').add({
-      // data 字段表示需新增的 JSON 数据
+
+    wx.showLoading({ title: '提交中' })
+    wx.cloud.callFunction({
+      name: 'dbconn',
       data: {
-        name: this.data.advice.name,
-        tip: this.data.advice.tip
+        dbName: 'feedbacks',
+        method: 'add',
+        data: {
+          name: this.data.advice.name,
+          tip: this.data.advice.tip
+        }
       }
-    })
-    .then(() => {
+    }).then(() => {
+      wx.hideLoading()
       wx.showToast({
         title: '添加成功',
         icon: 'success'

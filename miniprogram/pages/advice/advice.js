@@ -32,16 +32,20 @@ Page({
       return
     }
 
-    const db = wx.cloud.database()
-    db.collection('advices').add({
-      // data 字段表示需新增的 JSON 数据
+    wx.showLoading({ title: '提交中' })
+    wx.cloud.callFunction({
+      name: 'dbconn',
       data: {
-        name,
-        tip
+        dbName: 'advices',
+        method: 'add',
+        data: {
+          name,
+          tip
+        }
       }
-    })
-    .then(() => {
+    }).then(() => {
       this.clearData()
+      wx.hideLoading()
       wx.showToast({
         title: '谢谢你的建议',
         icon: 'success'

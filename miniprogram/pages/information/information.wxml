@@ -28,7 +28,8 @@
               <view class="collapsible-tab-text">{{ result.user }}</view>
             </view>
             <view class="collapsible-tab-item-bd {{result.open ? 'collapsible-tab-item-bd-show' : ''}}">
-              <view class="collapsible-tab-text">{{ result.tip }}</view>
+              <view class="collapsible-tab-text">{{ result.name }}</view>
+              <view class="collapsible-tab-text" style="margin-top: 2%">{{ result.tip }}</view>
             </view>
           </view>
         </block>
